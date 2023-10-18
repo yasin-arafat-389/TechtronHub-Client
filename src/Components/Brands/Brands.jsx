@@ -42,7 +42,7 @@ const Brands = () => {
 
         <div className="mx-auto grid justify-center gap-6 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-2 lg:md:grid-cols-3">
           {brand?.map((item, index) => (
-            <Link key={index} to="">
+            <Link key={index} to={`/brands/${item.path}`}>
               <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                 <img
                   className="w-full h-[250px] rounded-t-xl"
