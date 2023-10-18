@@ -1,6 +1,79 @@
 import { Rating } from "@material-tailwind/react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AddProduct = () => {
+  const [formData, setFormData] = useState({
+    image: "",
+    name: "",
+    brand: "",
+    type: "",
+    price: "",
+    shortDesc: "",
+    rating: 0,
+  });
+
+  let handleAddProduct = (e) => {
+    e.preventDefault();
+
+    fetch("http://localhost:5000/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        toast.success("Product Added Successfully!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    setFormData({
+      image: "",
+      name: "",
+      brand: "",
+      type: "",
+      price: "",
+      shortDesc: "",
+      rating: 0,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleRatingChange = (value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      rating: value,
+    }));
+  };
+
   return (
     <div>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -15,7 +88,10 @@ const AddProduct = () => {
             </p>
           </div>
 
-          <form className="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+          <form
+            onSubmit={handleAddProduct}
+            className="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2"
+          >
             <div>
               <label
                 htmlFor="first-name"
@@ -24,7 +100,11 @@ const AddProduct = () => {
                 Image
               </label>
               <input
+                required
+                type="text"
                 name="image"
+                value={formData.image}
+                onChange={handleInputChange}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
@@ -37,22 +117,33 @@ const AddProduct = () => {
                 Product Name
               </label>
               <input
+                required
+                type="text"
                 name="name"
+                value={formData.name}
+                onChange={handleInputChange}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label
-                htmlFor="company"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Brand Name
-              </label>
-              <input
+              <select
+                required
                 name="brand"
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
+                value={formData.brand}
+                onChange={handleSelectChange}
+                className="select select-secondary !border-2 border-grey-200 p-5 w-full max-w-xs"
+              >
+                <option disabled value="">
+                  Brand
+                </option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Sony">Sony</option>
+                <option value="Google">Google</option>
+                <option value="Intel">Intel</option>
+                <option value="Amazon">Amazon</option>
+              </select>
             </div>
 
             <div className="sm:col-span-2">
@@ -63,6 +154,9 @@ const AddProduct = () => {
                 Product Type
               </label>
               <input
+                required
+                value={formData.type}
+                onChange={handleInputChange}
                 name="type"
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
@@ -76,6 +170,9 @@ const AddProduct = () => {
                 Price
               </label>
               <input
+                required
+                value={formData.price}
+                onChange={handleInputChange}
                 name="price"
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
@@ -89,6 +186,9 @@ const AddProduct = () => {
                 Short description
               </label>
               <textarea
+                required
+                value={formData.shortDesc}
+                onChange={handleInputChange}
                 name="shortDesc"
                 className="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               ></textarea>
@@ -102,7 +202,12 @@ const AddProduct = () => {
                 Rating
               </label>
 
-              <Rating unratedColor="amber" ratedColor="amber" />
+              <Rating
+                unratedColor="amber"
+                ratedColor="amber"
+                value={formData.rating}
+                onChange={handleRatingChange}
+              />
             </div>
 
             <div className="flex items-center justify-between sm:col-span-2">
