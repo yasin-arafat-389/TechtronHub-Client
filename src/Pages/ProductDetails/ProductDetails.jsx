@@ -1,11 +1,34 @@
 import { Rating } from "@material-tailwind/react";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   let singleData = useLoaderData();
 
   let handleAddToCart = () => {
-    console.log("yo");
+    fetch("http://localhost:5000/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(singleData),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        toast.success(`${singleData.name} has been added to cart`, {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
