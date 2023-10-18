@@ -1,0 +1,6 @@
+.active {
+  background: linear-gradient(104deg, #bc04c7 0%, #59009b 100%);
+  padding: 10px;
+  border-radius: 12px;
+  color: #fff;
+}
