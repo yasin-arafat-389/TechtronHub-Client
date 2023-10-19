@@ -1,7 +1,75 @@
 import { Input } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authContext } from "../../Contexts/AuthContext";
+import swal from "sweetalert";
+import { toast } from "react-toastify";
 
 const Registration = () => {
+  let { createUser, update } = useContext(authContext);
+  let navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    photo: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:;<>,.?/~`])(.{6,})$/;
+    const validPassword = regex.test(formData.password);
+
+    if (!validPassword) {
+      swal(
+        "Oops",
+        "Password must be at least 6 characters long, containing at least one upper case and special character",
+        "error"
+      );
+      return;
+    }
+
+    createUser(formData.email, formData.password)
+      .then(() => {
+        update(formData.name, formData.photo)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
+
+        toast.success("Registration Successfull!!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    setFormData({
+      name: "",
+      photo: "",
+      email: "",
+      password: "",
+    });
+  };
+
   return (
     <div
       className=""
@@ -30,9 +98,11 @@ const Registration = () => {
               Sign Up to join our community
             </p>
 
-            <form>
+            <form onSubmit={handleRegister} id="regForm">
               <div className="w-full mt-4">
                 <Input
+                  value={formData.name}
+                  onChange={handleInputChange}
                   color="blue"
                   label="Enter your Name"
                   name="name"
@@ -41,6 +111,8 @@ const Registration = () => {
               </div>
               <div className="w-full mt-4">
                 <Input
+                  value={formData.photo}
+                  onChange={handleInputChange}
                   color="blue"
                   label="Enter your Photo URL"
                   name="photo"
@@ -49,6 +121,8 @@ const Registration = () => {
               </div>
               <div className="w-full mt-4">
                 <Input
+                  value={formData.email}
+                  onChange={handleInputChange}
                   color="blue"
                   label="Enter your email"
                   name="email"
@@ -58,6 +132,8 @@ const Registration = () => {
               </div>
               <div className="w-full mt-4">
                 <Input
+                  value={formData.password}
+                  onChange={handleInputChange}
                   color="blue"
                   label="Enter a password"
                   name="password"

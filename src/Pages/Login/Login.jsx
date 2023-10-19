@@ -1,8 +1,80 @@
 import { Button, Input } from "@material-tailwind/react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { authContext } from "../../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  let { login, googleLogin } = useContext(authContext);
+  let navigate = useNavigate();
+  let location = useLocation();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  let handleLogin = (e) => {
+    e.preventDefault();
+
+    login(formData.email, formData.password)
+      .then(() => {
+        navigate(location?.state ? location.state : "/");
+        toast.success("Successfully Logged In!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      })
+      .catch((error) => {
+        if (error) {
+          toast.error("Invalid Email or Password!!", {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+      });
+  };
+
+  let handleGoogleLogin = () => {
+    googleLogin()
+      .then(() => {
+        navigate(location?.state ? location.state : "/");
+        toast.success("Successfully Logged In!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="bg-gray-200">
       <div className="py-10">
@@ -29,6 +101,7 @@ const Login = () => {
             </p>
 
             <Button
+              onClick={handleGoogleLogin}
               size="lg"
               variant="outlined"
               color="blue-gray"
@@ -51,10 +124,13 @@ const Login = () => {
               <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
             </div>
 
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="mt-4">
                 <Input
+                  value={formData.email}
+                  onChange={handleInputChange}
                   color="blue"
+                  name="email"
                   label="Enter your email"
                   type="email"
                   required
@@ -62,7 +138,10 @@ const Login = () => {
               </div>
               <div className="mt-4">
                 <Input
+                  value={formData.password}
+                  onChange={handleInputChange}
                   color="blue"
+                  name="password"
                   label="Enter password"
                   type="password"
                   required

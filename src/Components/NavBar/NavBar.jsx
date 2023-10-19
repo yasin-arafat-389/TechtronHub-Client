@@ -1,11 +1,35 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { Button } from "@material-tailwind/react";
+import { Avatar, Button } from "@material-tailwind/react";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { authContext } from "../../Contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  let { user, logOut } = useContext(authContext);
+  let navigate = useNavigate();
+
+  let handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+
+    toast.success("Successfully Logged out!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    navigate("/login");
+  };
 
   let activeRoute = `middle none center  rounded-lg bg-blue-500 py-3 px-2 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`;
 
@@ -83,9 +107,20 @@ const NavBar = () => {
             </NavLink>
           </div>
           <div className="flex items-center gap-5">
-            <NavLink to="/login">
-              <Button>Login</Button>
-            </NavLink>
+            {user ? (
+              <div className="flex gap-4 items-center">
+                <h1>{user.displayName}</h1>
+                <Avatar src={user.photoURL} alt="avatar" />
+                <NavLink to="/login">
+                  <Button onClick={handleLogOut}>Logout</Button>
+                </NavLink>
+              </div>
+            ) : (
+              <NavLink to="/login">
+                <Button>Login</Button>
+              </NavLink>
+            )}
+
             <ThemeToggle />
           </div>
         </div>
