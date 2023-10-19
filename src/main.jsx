@@ -7,6 +7,9 @@ import router from "./Routes/Routes";
 import { ToggleProvider } from "./Contexts/ToggleProvider";
 import "react-toastify/dist/ReactToastify.css";
 import AuthContext from "./Contexts/AuthContext";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

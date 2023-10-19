@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { Slider } from "../../Components/Carousel/Carousel";
 import { useEffect, useState } from "react";
 import { Rating } from "@material-tailwind/react";
+import Carousel from "../../Components/Carousel/Carousel";
 
 const BrandPage = () => {
   let data = useLoaderData();
@@ -18,8 +18,8 @@ const BrandPage = () => {
 
   return (
     <div className="">
-      <div className="h-[500px] mx-auto">
-        <Slider data={data} />
+      <div>
+        <Carousel data={data} />
       </div>
 
       {products.length === 0 ? (
@@ -66,7 +66,7 @@ const BrandPage = () => {
         </div>
       ) : (
         <>
-          <div className="max-w-2xl mx-auto text-center my-10">
+          <div className="max-w-2xl mx-auto text-center my-10 mt-10">
             <h2
               className={`text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl`}
             >
