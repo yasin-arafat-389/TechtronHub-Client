@@ -120,7 +120,7 @@ const BrandPage = () => {
                     Details
                   </Link>
                   <Link
-                    to="/"
+                    to={`/brands/update/${item._id}`}
                     className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white bg-amber-900 hover:bg-amber-800 focus:outline-none focus:ring-4 focus:ring-blue-300 mt-3"
                   >
                     Update

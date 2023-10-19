@@ -1,8 +1,37 @@
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import swal from "sweetalert";
 
 const MyCart = () => {
-  let orderData = useLoaderData();
-  console.log(orderData);
+  const [orderData, setOrderData] = useState(useLoaderData());
+
+  let handleDelete = (id, name) => {
+    swal({
+      title: `Are you sure you want to delete ${name}?`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/delete/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then(() => {
+            const updatedData = orderData.filter((item) => item._id !== id);
+            setOrderData(updatedData);
+          });
+
+        swal(`${name} has been deleted!`, {
+          icon: "success",
+        });
+      }
+    });
+  };
+
   return (
     <div>
       {orderData.length === 0 ? (
@@ -162,6 +191,9 @@ const MyCart = () => {
 
                             <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
                               <button
+                                onClick={() =>
+                                  handleDelete(item._id, item.name)
+                                }
                                 type="button"
                                 className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900"
                               >
