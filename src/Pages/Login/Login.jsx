@@ -4,8 +4,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
+import { Bars } from "react-loader-spinner";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   let { login, googleLogin } = useContext(authContext);
   let navigate = useNavigate();
   let location = useLocation();
@@ -24,6 +26,7 @@ const Login = () => {
 
   let handleLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     login(formData.email, formData.password)
       .then(() => {
@@ -40,6 +43,7 @@ const Login = () => {
         });
       })
       .catch((error) => {
+        setLoading(false);
         if (error) {
           toast.error("Invalid Email or Password!!", {
             position: "top-right",
@@ -156,10 +160,24 @@ const Login = () => {
 
               <div className="mt-6">
                 <button
-                  className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+                  className={`w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 `}
                   type="submit"
                 >
-                  Sign In
+                  {loading ? (
+                    <div className="flex justify-center items-center">
+                      <Bars
+                        height="20"
+                        width="100"
+                        color="#fff"
+                        ariaLabel="bars-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                      />
+                    </div>
+                  ) : (
+                    " Login"
+                  )}
                 </button>
               </div>
             </form>

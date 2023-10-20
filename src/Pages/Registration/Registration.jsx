@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Contexts/AuthContext";
 import swal from "sweetalert";
 import { toast } from "react-toastify";
+import { Bars } from "react-loader-spinner";
 
 const Registration = () => {
+  const [loading, setLoading] = useState(false);
   let { createUser, update } = useContext(authContext);
   let navigate = useNavigate();
 
@@ -26,6 +28,7 @@ const Registration = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setLoading(true);
     const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|:;<>,.?/~`])(.{6,})$/;
     const validPassword = regex.test(formData.password);
 
@@ -144,7 +147,21 @@ const Registration = () => {
 
               <div className="flex items-center justify-between mt-4">
                 <button className="w-full px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                  Sign Up
+                  {loading ? (
+                    <div className="flex justify-center items-center">
+                      <Bars
+                        height="20"
+                        width="100"
+                        color="#fff"
+                        ariaLabel="bars-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                      />
+                    </div>
+                  ) : (
+                    "Register"
+                  )}
                 </button>
               </div>
             </form>
