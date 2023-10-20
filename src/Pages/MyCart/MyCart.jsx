@@ -6,14 +6,15 @@ import { authContext } from "../../Contexts/AuthContext";
 
 const MyCart = () => {
   let { user } = useContext(authContext);
+  let email = user.email;
 
   const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://techtron-hub-server.vercel.app/orders/${user.email}`)
+    fetch(`https://techtron-hub-server.vercel.app/orders/${email}`)
       .then((res) => res.json())
       .then((data) => setOrderData(data));
-  }, [user.email]);
+  }, [email]);
 
   console.log(orderData);
 
