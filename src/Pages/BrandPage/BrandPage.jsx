@@ -9,7 +9,7 @@ const BrandPage = () => {
   let [prod, setProd] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://techtron-hub-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProd(data));
   }, []);

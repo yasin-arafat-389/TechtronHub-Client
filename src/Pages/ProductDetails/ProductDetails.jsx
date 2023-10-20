@@ -6,7 +6,7 @@ const ProductDetails = () => {
   let singleData = useLoaderData();
 
   let handleAddToCart = () => {
-    fetch("http://localhost:5000/order", {
+    fetch("https://techtron-hub-server.vercel.app/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

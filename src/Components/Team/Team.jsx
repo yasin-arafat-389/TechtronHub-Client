@@ -7,7 +7,11 @@ const Team = () => {
 
   return (
     <div>
-      <div className={`${isDarkMode ? "bg-[#000]" : ""} py-6 sm:py-8 lg:py-12`}>
+      <div
+        className={`${
+          isDarkMode ? "bg-[#000]" : "bg-teal-50"
+        } py-6 sm:py-8 lg:py-12`}
+      >
         <div className="mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
             <h2
@@ -20,7 +24,7 @@ const Team = () => {
 
             <p
               className={`mx-auto max-w-screen-md text-center ${
-                isDarkMode ? "text-[#fff]" : "text-gray-500"
+                isDarkMode ? "text-[#fff]" : "text-gray-800"
               } md:text-lg`}
             >
               Behind our pioneering tech solutions stands a team of dedicated

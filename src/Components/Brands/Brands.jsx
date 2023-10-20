@@ -7,7 +7,7 @@ const Brands = () => {
   const { isDarkMode } = useContext(ThemeContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
+    fetch("https://techtron-hub-server.vercel.app/brands")
       .then((res) => res.json())
       .then((data) => setBrand(data));
   }, []);
@@ -40,20 +40,20 @@ const Brands = () => {
           </p>
         </div>
 
-        <div className="mx-auto grid justify-center gap-6 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-2 lg:md:grid-cols-3">
+        <div className="mx-auto grid justify-center gap-6 md:gap-6 lg:gap-9 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-2 lg:md:grid-cols-3">
           {brand?.map((item, index) => (
             <Link key={index} to={`/brands/${item.path}`}>
-              <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+              <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 max-w-sm mx-auto ">
                 <img
-                  className="w-full h-[250px] rounded-t-xl"
                   src={item.image}
+                  alt="University of Southern California"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="p-4 md:p-5">
-                  <h3 className="text-[30px] text-center font-bold text-gray-800 dark:text-white">
-                    {item.name}
-                  </h3>
-                </div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+                <h3 className="z-10 mt-3 text-3xl font-bold text-white">
+                  {item.name}
+                </h3>
+              </article>
             </Link>
           ))}
         </div>

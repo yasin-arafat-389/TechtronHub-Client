@@ -36,13 +36,13 @@ const router = createBrowserRouter([
             <MyCart />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/orders"),
+        loader: () => fetch("https://techtron-hub-server.vercel.app/orders"),
       },
       {
         path: "/brands/:path",
         element: <BrandPage />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/brands/${params.path}`),
+          fetch(`https://techtron-hub-server.vercel.app/brands/${params.path}`),
       },
       {
         path: "/brands/details/:id",
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://techtron-hub-server.vercel.app/products/${params.id}`),
       },
       {
         path: "/brands/update/:id",
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://techtron-hub-server.vercel.app/products/${params.id}`),
       },
       {
         path: "/register",

@@ -16,7 +16,7 @@ const AddProduct = () => {
   let handleAddProduct = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/add", {
+    fetch("https://techtron-hub-server.vercel.app/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const AddProduct = () => {
 
   return (
     <div>
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
+      <div className="bg-gray-100 py-6 sm:py-8 lg:py-12">
         <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
             <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
@@ -105,7 +105,7 @@ const AddProduct = () => {
                 name="image"
                 value={formData.image}
                 onChange={handleInputChange}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+                className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
 
@@ -122,7 +122,7 @@ const AddProduct = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+                className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
 
@@ -158,7 +158,7 @@ const AddProduct = () => {
                 value={formData.type}
                 onChange={handleInputChange}
                 name="type"
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+                className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
 
@@ -174,7 +174,7 @@ const AddProduct = () => {
                 value={formData.price}
                 onChange={handleInputChange}
                 name="price"
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+                className="w-full rounded border bg-white  px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
 
@@ -190,7 +190,7 @@ const AddProduct = () => {
                 value={formData.shortDesc}
                 onChange={handleInputChange}
                 name="shortDesc"
-                className="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+                className="h-64 w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               ></textarea>
             </div>
 

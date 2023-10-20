@@ -76,7 +76,13 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-200">
+    <div
+      className="bg-gray-200"
+      style={{
+        background:
+          "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)",
+      }}
+    >
       <div className="py-10">
         <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
           <div

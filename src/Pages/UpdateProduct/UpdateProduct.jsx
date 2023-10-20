@@ -41,7 +41,7 @@ const UpdateProduct = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/update/${data._id}`, {
+    fetch(`https://techtron-hub-server.vercel.app/update/${data._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

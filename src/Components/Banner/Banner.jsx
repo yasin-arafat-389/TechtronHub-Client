@@ -20,11 +20,11 @@ const Banner = () => {
 
             <div className="absolute inset-0 bg-indigo-500 mix-blend-multiply"></div>
 
-            <div className="relative flex flex-col items-center p-4 sm:max-w-xl">
+            <div className="relative flex flex-col items-center p-4 sm:max-w-2xl">
               <p className="mb-4 text-center text-lg text-amber-200 sm:text-xl md:mb-8">
                 Proudly Unveiling Tomorrow
               </p>
-              <h1 className="mb-8 text-center text-4xl font-bold text-white sm:text-5xl md:mb-12 md:text-4xl">
+              <h1 className="mb-8 text-center text-2xl font-bold text-white sm:text-5xl md:mb-12 md:text-5xl">
                 Discover the Latest Innovations and Gadgets!
               </h1>
 
