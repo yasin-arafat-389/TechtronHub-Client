@@ -13,7 +13,7 @@ export default function Carousel({ data }) {
   };
   return (
     <>
-      <div className="w-[90%] mx-auto mt-10 ">
+      <div className="w-[90%] mx-auto pt-10 ">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}

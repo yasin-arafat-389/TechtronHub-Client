@@ -36,7 +36,6 @@ const router = createBrowserRouter([
             <MyCart />
           </PrivateRoute>
         ),
-        loader: () => fetch("https://techtron-hub-server.vercel.app/orders"),
       },
       {
         path: "/brands/:path",

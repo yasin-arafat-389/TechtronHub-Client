@@ -9,18 +9,26 @@ const Testimonial = () => {
       <section
         className={` ${isDarkMode ? "bg-[#000]" : "bg-gray-200"} sm:py-16 `}
       >
-        <section className="bg-gray-200 dark:bg-gray-900">
-          <div className="container px-6 py-12 mx-auto">
+        <section className={`${isDarkMode ? "bg-[#000]" : "bg-gray-200"}`}>
+          <div className="px-6 py-12 mx-auto">
             <div className="text-center">
               <p className="font-medium text-blue-500 dark:text-blue-400">
                 Contact us
               </p>
 
-              <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">
+              <h1
+                className={`mt-2 text-2xl font-semibold ${
+                  isDarkMode ? "text-white" : "text-gray-800"
+                } md:text-3xl`}
+              >
                 Get in touch
               </h1>
 
-              <p className="mt-3 text-gray-800 dark:text-gray-400">
+              <p
+                className={`mt-3 ${
+                  isDarkMode ? "text-white" : "text-gray-800"
+                }`}
+              >
                 Our friendly team is always here to chat.
               </p>
             </div>
@@ -44,10 +52,18 @@ const Testimonial = () => {
                   </svg>
                 </span>
 
-                <h2 className="mt-4 text-lg font-medium text-gray-800 dark:text-white">
+                <h2
+                  className={`mt-4 text-lg font-medium ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Email
                 </h2>
-                <p className="mt-2 text-gray-800 dark:text-gray-400">
+                <p
+                  className={`mt-2 text-gray-800 dark:text-gray-400 ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Our friendly team is here to help.
                 </p>
                 <p className="mt-2 text-blue-500 dark:text-blue-400">
@@ -78,10 +94,18 @@ const Testimonial = () => {
                   </svg>
                 </span>
 
-                <h2 className="mt-4 text-lg font-medium text-gray-800 dark:text-white">
+                <h2
+                  className={`mt-4 text-lg font-medium ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Office
                 </h2>
-                <p className="mt-2 text-gray-800 dark:text-gray-400">
+                <p
+                  className={`mt-2 ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Come say hello at our office HQ.
                 </p>
                 <p className="mt-2 text-blue-500 dark:text-blue-400">
@@ -107,10 +131,18 @@ const Testimonial = () => {
                   </svg>
                 </span>
 
-                <h2 className="mt-4 text-lg font-medium text-gray-800 dark:text-white">
+                <h2
+                  className={`mt-4 text-lg font-medium ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Phone
                 </h2>
-                <p className="mt-2 text-gray-800 dark:text-gray-400">
+                <p
+                  className={`mt-2 ${
+                    isDarkMode ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Mon-Fri from 8am to 5pm.
                 </p>
                 <p className="mt-2 text-blue-500 dark:text-blue-400">

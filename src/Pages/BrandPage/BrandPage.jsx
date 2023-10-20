@@ -17,7 +17,7 @@ const BrandPage = () => {
   let products = prod.filter((br) => br.brand === data.name);
 
   return (
-    <div className="">
+    <div className="bg-gray-200">
       <div>
         <Carousel data={data} />
       </div>
@@ -75,10 +75,10 @@ const BrandPage = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto justify-items-center mt-20 mb-20 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto justify-items-center mt-20 pb-20 gap-10">
             {products.map((item, index) => (
               <div
-                className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+                className="relative flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-xl"
                 key={index}
               >
                 <a

@@ -1,9 +1,16 @@
 import { Rating } from "@material-tailwind/react";
+import { useContext } from "react";
+import { authContext } from "../../Contexts/AuthContext";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ProductDetails = () => {
+  let { user } = useContext(authContext);
   let singleData = useLoaderData();
+  let currentUser = user.email;
+  let { image, brand, name, price } = singleData;
+
+  let order = { image, brand, name, price, currentUser };
 
   let handleAddToCart = () => {
     fetch("https://techtron-hub-server.vercel.app/order", {
@@ -11,7 +18,7 @@ const ProductDetails = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(singleData),
+      body: JSON.stringify(order),
     })
       .then((response) => response.json())
       .then(() => {

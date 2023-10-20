@@ -1,10 +1,21 @@
 import { Button } from "@material-tailwind/react";
-import { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import { authContext } from "../../Contexts/AuthContext";
 
 const MyCart = () => {
-  const [orderData, setOrderData] = useState(useLoaderData());
+  let { user } = useContext(authContext);
+
+  const [orderData, setOrderData] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://techtron-hub-server.vercel.app/orders/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setOrderData(data));
+  }, [user.email]);
+
+  console.log(orderData);
 
   let handleDelete = (id, name) => {
     swal({
