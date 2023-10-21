@@ -30,8 +30,8 @@ const BrandPage = () => {
       {loading ? (
         <div className="flex h-screen justify-center items-center">
           <CirclesWithBar
-            height="300"
-            width="300"
+            height="150"
+            width="150"
             color="#4fa94d"
             wrapperStyle={{}}
             wrapperClass=""
@@ -92,7 +92,7 @@ const BrandPage = () => {
             </div>
           ) : (
             <>
-              <div className="max-w-2xl mx-auto text-center my-10 mt-10">
+              <div className="max-w-2xl mx-auto text-center mt-20">
                 <h2
                   className={`text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl`}
                 >

@@ -8,7 +8,7 @@ import { Bars } from "react-loader-spinner";
 
 const Registration = () => {
   const [loading, setLoading] = useState(false);
-  let { createUser, update } = useContext(authContext);
+  let { createUser, update, logOut } = useContext(authContext);
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -38,12 +38,19 @@ const Registration = () => {
         "Password must be at least 6 characters long, containing at least one upper case and special character",
         "error"
       );
+      setLoading(false);
       return;
     }
 
     createUser(formData.email, formData.password)
       .then(() => {
         update(formData.name, formData.photo)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
+
+        logOut()
           .then(() => {})
           .catch((error) => {
             console.log(error);
@@ -59,7 +66,7 @@ const Registration = () => {
           progress: undefined,
           theme: "dark",
         });
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         console.log(error);

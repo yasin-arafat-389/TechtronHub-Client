@@ -88,7 +88,7 @@ export function NavBar() {
   );
 
   return (
-    <div className="mx-auto px-4 py-2 lg:px-8 lg:py-4 sticky z-10 top-0 bg-[#ffdb99] ">
+    <div className="mx-auto px-4 py-2 lg:px-8 lg:py-4 sticky z-10 top-0 bg-[#FFFF] shadow-2xl ">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <img
           src="https://i.ibb.co/N6ZMf1t/Tech-Tron-removebg-preview.png"
