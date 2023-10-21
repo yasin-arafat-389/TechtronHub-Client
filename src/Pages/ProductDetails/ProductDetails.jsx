@@ -1,10 +1,12 @@
 import { Rating } from "@material-tailwind/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { authContext } from "../../Contexts/AuthContext";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Bars } from "react-loader-spinner";
 
 const ProductDetails = () => {
+  const [loading, setLoading] = useState(false);
   let { user } = useContext(authContext);
   let singleData = useLoaderData();
   let currentUser = user.email;
@@ -13,6 +15,7 @@ const ProductDetails = () => {
   let order = { image, brand, name, price, currentUser };
 
   let handleAddToCart = () => {
+    setLoading(true);
     fetch("https://techtron-hub-server.vercel.app/order", {
       method: "POST",
       headers: {
@@ -32,8 +35,10 @@ const ProductDetails = () => {
           progress: undefined,
           theme: "dark",
         });
+        setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
         console.error("Error:", error);
       });
   };
@@ -116,7 +121,21 @@ const ProductDetails = () => {
                   onClick={handleAddToCart}
                   className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                 >
-                  Add To Cart
+                  {loading ? (
+                    <div className="flex justify-center items-center">
+                      <Bars
+                        height="20"
+                        width="100"
+                        color="#fff"
+                        ariaLabel="bars-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                      />
+                    </div>
+                  ) : (
+                    "Add To Cart"
+                  )}
                 </button>
               </div>
             </div>

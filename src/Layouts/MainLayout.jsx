@@ -8,7 +8,7 @@ import TopLoadingBar from "../Components/TopLoadingBar/TopLoadingBar";
 const MainLayout = () => {
   return (
     <div>
-      <ToastContainer />
+      <ToastContainer pauseOnFocusLoss={false} />
       <TopLoadingBar />
       <ScrollToTop />
       <NavBar />

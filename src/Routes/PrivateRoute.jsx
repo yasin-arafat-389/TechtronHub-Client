@@ -13,8 +13,8 @@ const PrivateRoute = ({ children }) => {
     return (
       <div className="flex h-screen justify-center items-center">
         <CirclesWithBar
-          height="300"
-          width="300"
+          height="150"
+          width="150"
           color="#4fa94d"
           wrapperStyle={{}}
           wrapperClass=""
