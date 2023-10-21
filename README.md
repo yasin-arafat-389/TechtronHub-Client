@@ -1,8 +1,13 @@
-# React + Vite
+## About Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Project name:- TechTron Hub
+- [Project live URL](https://techtron-hub.web.app/)
 
-Currently, two official plugins are available:
+# Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User can the product brands in the homepage.
+- User can see details about the brands by clicking the brand card.
+- User can see details of a product.
+- User can add product to cart.
+- A logged in user can edit, insert a product.
+- A logged in user can delete product from cart.
