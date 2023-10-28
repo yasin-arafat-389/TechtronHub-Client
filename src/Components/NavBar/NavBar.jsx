@@ -11,7 +11,6 @@ import { HiHome } from "react-icons/hi2";
 import { BiSolidMessageSquareAdd } from "react-icons/bi";
 import { BsCartCheckFill } from "react-icons/bs";
 import { IoLogIn } from "react-icons/io5";
-import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import "./NavBar.css";
 import { authContext } from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -120,8 +119,6 @@ export function NavBar() {
               </Button>
             </Link>
           )}
-
-          <ThemeToggle />
         </div>
         <IconButton
           variant="text"
@@ -188,7 +185,6 @@ export function NavBar() {
               </Button>
             </Link>
           )}
-          <ThemeToggle />
         </div>
       </Collapse>
     </div>
