@@ -1,4 +1,4 @@
-## About Project
+# About Project
 
 - Project name:- TechTron Hub
 - [Project live URL](https://techtron-hub.web.app/)
