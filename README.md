@@ -11,3 +11,8 @@
 - User can add product to cart.
 - A logged in user can edit, insert a product.
 - A logged in user can delete product from cart.
+
+# Technologies used
+
+- Client side (React, state management, react router etc.)
+- Server side (Node JS, Express JS, MongoDB)
