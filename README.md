@@ -1,6 +1,7 @@
 # About Project
 
 - Project name:- TechTron Hub
+- Type:- Online electronics marketplace
 - [Project live URL](https://techtron-hub.web.app/)
 
 # Features
